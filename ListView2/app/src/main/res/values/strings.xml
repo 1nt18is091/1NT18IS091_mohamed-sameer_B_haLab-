@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">ListView</string>
+    <string-array name="f1Teams">
+        <item>Redbull F1</item>
+        <item>Mercedes F1</item>
+        <item>Haas F1</item>
+        <item>Ferrari F1</item>
+        <item>Alpha Tuari F1</item>
+        <item>Redbull F1</item>
+        <item>Mercedes F1</item>
+        <item>Haas F1</item>
+        <item>Ferrari F1</item>
+        <item>Alpha Tuari F1</item>
+        <item>Redbull F1</item>
+        <item>Mercedes F1</item>
+        <item>Haas F1</item>
+        <item>Ferrari F1</item>
+        <item>Alpha Tuari F1</item>
+        <item>Redbull F1</item>
+        <item>Mercedes F1</item>
+        <item>Haas F1</item>
+        <item>Ferrari F1</item>
+        <item>Alpha Tuari F1</item>
+    </string-array>
+</resources>
