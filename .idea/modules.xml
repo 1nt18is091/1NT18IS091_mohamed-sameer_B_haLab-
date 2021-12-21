@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/1NT18IS091_mohamed-sameer_B_haLab-.iml" filepath="$PROJECT_DIR$/.idea/1NT18IS091_mohamed-sameer_B_haLab-.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CrudApp.iml" filepath="$PROJECT_DIR$/.idea/modules/CrudApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CrudApp.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CrudApp.app.iml" />
     </modules>
   </component>
 </project>

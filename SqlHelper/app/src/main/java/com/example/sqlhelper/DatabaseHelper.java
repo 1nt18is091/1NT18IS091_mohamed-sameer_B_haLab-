@@ -2,8 +2,11 @@ package com.example.sqlhelper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import androidx.annotation.Nullable;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper{
@@ -17,10 +20,15 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         private static final String CREATE_TABLE="create table if not exists "+ TABLE_NAME + "(" + COL1 + " INTEGER PRIMARY KEY AUTOINCREMENT,"+COL2+" TEXT NOT NULL," + COL3 + " TEXT, " +COL4 + " INTEGER);";
         private static final String DROP_TABLE = "DROP TABLE IF EXISTS "+ TABLE_NAME;
         private Context context;
-        public DatabaseHelper(Context context) {
-            super(context,dbName,null,version);
-            context=this.context;
+        
+        public DatabaseHelper(@Nullable Context context){
+            super(context,"Login.db",null,1)    ;
         }
+
+//        public DatabaseHelper(Context context) {
+//            super(context,dbName,null,version);
+//            context=this.context;
+//        }
         @Override
         public void onCreate(SQLiteDatabase db) {
             try {
@@ -44,6 +52,51 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 return false;
             else
                 return true;
+        }
+
+        public boolean updateData(User userObj){
+            SQLiteDatabase db=this.getWritableDatabase();
+            ContentValues cv=new ContentValues();
+
+            cv.put(COL3,userObj.getUserPassword());
+            cv.put(COL4,userObj.getFullName());
+            Cursor cursor=db.rawQuery("Select * from "+TABLE_NAME+ " where "+COL2+" = ?", new String[] {userObj.getUserName()});
+            if(cursor.getCount()>0){
+                long result=db.update(TABLE_NAME, cv, COL2+"=?", new String[] {userObj.getUserName()});
+                if(result==-1){
+                    return false;
+                }
+                else{
+                    return  true;
+                }
+            }
+            else{
+                return false;
+            }
+        }
+
+        public boolean deleteData(User userObj){
+            SQLiteDatabase db=this.getWritableDatabase();
+            ContentValues cv=new ContentValues();
+            Cursor cursor=db.rawQuery("Select * from "+TABLE_NAME+" where "+COL2+" = ?", new String[] {userObj.getUserName()});
+            if(cursor.getCount()>0){
+                long result=db.delete(TABLE_NAME, COL2+"=?", new String[] {userObj.getUserName()});
+                if(result==-1){
+                    return false;
+                }
+                else{
+                    return  true;
+                }
+            }
+            else{
+                return false;
+            }
+        }
+
+        public Cursor viewData(){
+            SQLiteDatabase db=this.getWritableDatabase();
+            Cursor cursor =db.rawQuery("Select * from "+TABLE_NAME,null);
+            return cursor;
         }
 }
 
